@@ -1,0 +1,7 @@
+GET http://www.omdbapi.com/?apikey=6dc0af9f&s=test
+
+### 
+GET http://www.omdbapi.com/?apikey=6dc0af9f&s=prem
+
+###
+GET http://www.omdbapi.com/?apikey=6dc0af9f&s=howdy
