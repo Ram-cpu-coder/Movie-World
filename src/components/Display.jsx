@@ -9,7 +9,15 @@ export const Display = ({ movieList, handleOnDeleteMovie }) => {
     setDisplayList(movieList);
   }, [movieList]);
 
-  const handleOnFilter = (mood) => {};
+  const handleOnFilter = (mood) => {
+    setDisplayList(
+      movieList.filter((movie) => {
+        if (mood == movie.mood || mood == "all") {
+          return movie;
+        }
+      })
+    );
+  };
 
   return (
     <div className="container mt-5 ">
@@ -25,7 +33,7 @@ export const Display = ({ movieList, handleOnDeleteMovie }) => {
                 All
               </button>
               <button
-                onClick={() => handleOnFilter("dram")}
+                onClick={() => handleOnFilter("drama")}
                 type="button"
                 className="btn btn-warning"
               >
