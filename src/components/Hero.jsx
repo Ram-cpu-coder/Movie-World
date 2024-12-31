@@ -4,10 +4,11 @@ import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
 
 export const Hero = ({ addMovieToList }) => {
-  const [searchedMovie, setSearchedMovie] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [searchedMovie, setSearchedMovie] = useState([]);
   const [bgImg, setBgImg] = useState("");
   const shouldFetchRef = useRef(true);
-  const searchRef = useRef("");
+  // const searchRef = useRef("");
 
   const [searching, setSearching] = useState(false);
 
@@ -16,26 +17,30 @@ export const Hero = ({ addMovieToList }) => {
     setBgImg(data.Poster);
     setSearchedMovie(data);
   };
+  // const searchFunction = async () => {
+  //   const data = await fetchFromAPI(searchRef);
+
+  // };
   useEffect(() => {
     fetchTheRandomMovie();
   }, []);
 
   const fetchMovie = async (str) => {};
-
+  const handleOnChange = (e) => {
+    setSearchValue(e.target.value);
+  };
   const handleOnMovieSearch = async () => {
     //get the input value
-    const searchValue = searchRef.current.value;
-
+    // const searchValue = searchRef.current.value;
     // call the api using search value
     const data = await fetchFromAPI(searchValue);
 
     // update the searched Movie
     setSearchedMovie(data);
     setBgImg(data.Poster);
-    console.log(data, "Searched Movie");
+    console.log(data, "Searched Movie", typeof data);
     setSearching(false);
   };
-
   const handleOnDelete = () => {};
 
   const handleOnAddTOTheList = (mood) => {
@@ -79,11 +84,8 @@ export const Hero = ({ addMovieToList }) => {
 
             <div className="input-group my-5 ">
               <input
-                ref={searchRef}
-                // value={searchedMovie}
-                // onChange={(e) => {
-                //   setSearchedMovie(e.target.value);
-                // }}
+                // ref={searchRef}
+                onChange={handleOnChange}
                 onFocus={() => setSearching(true)}
                 type="text"
                 className="form-control"
@@ -104,11 +106,13 @@ export const Hero = ({ addMovieToList }) => {
 
           {!searching && (
             <div className="movie-card-display showMovie">
-              <MovieCard
-                searchedMovie={searchedMovie}
-                deleteFunc={handleOnDelete}
-                handleOnAddTOTheList={handleOnAddTOTheList}
-              />
+              {
+                <MovieCard
+                  searchedMovie={searchedMovie}
+                  deleteFunc={handleOnDelete}
+                  handleOnAddTOTheList={handleOnAddTOTheList}
+                />
+              }
             </div>
           )}
         </div>

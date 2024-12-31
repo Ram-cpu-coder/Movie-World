@@ -23,7 +23,6 @@ function App() {
   useEffect(() => {
     setMovieList(accessFromLocalSession("movieList"));
   }, []);
-
   const addMovieToList = (movie) => {
     //remove  possible duplicate movie
     const tempMv = movieList.filter((item) => item.imdbID !== movie.imdbID);

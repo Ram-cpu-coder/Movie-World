@@ -5,12 +5,11 @@ export const MovieCard = ({
   deleteFunc,
   handleOnAddTOTheList,
 }) => {
-  const { Poster, Title, imdbRating, Plot, mood, imdbID } = searchedMovie;
-
   console.log(searchedMovie);
+  const { Poster, Title, imdbRating, Plot, mood, imdbID } = searchedMovie;
   return (
     <div className="container">
-      <div className="row   border rounded text-dark p-3 movie-card-item">
+      <div className="row border rounded text-dark p-3 movie-card-item">
         <div className="col-md">
           <img src={Poster} alt="" />
         </div>

@@ -12,9 +12,10 @@ export const Display = ({ movieList, handleOnDeleteMovie }) => {
   const handleOnFilter = (mood) => {
     setDisplayList(
       movieList.filter((movie) => {
-        if (mood == movie.mood || mood == "all") {
-          return movie;
-        }
+        // if (mood == movie.mood || mood == "all") {
+        //   return movie;
+        // }
+        return mood == movie.mood || mood == "all";
       })
     );
   };
